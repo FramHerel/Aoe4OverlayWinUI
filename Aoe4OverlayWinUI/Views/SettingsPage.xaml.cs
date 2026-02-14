@@ -1,4 +1,3 @@
-using CommunityToolkit.WinUI.UI.Controls;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -6,12 +5,12 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
-using Aoe4OverlayWinUI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.System;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -23,12 +22,11 @@ namespace Aoe4OverlayWinUI.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class GamesListPage : Page
+    public sealed partial class SettingsPage : Page
     {
-        public GamesListPage()
+        public SettingsPage()
         {
             InitializeComponent();
-            DataContext = new GamesViewModel();
         }
     }
 }

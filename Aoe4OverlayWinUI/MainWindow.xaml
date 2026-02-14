@@ -7,22 +7,42 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Title="Age of Empire IV Overlay (WinUI 3)">
+    Title="Age of Empire IV Overlay by WinUI 3">
 
     <Window.SystemBackdrop>
-        <MicaBackdrop Kind="Base"/>
+        <MicaBackdrop />
     </Window.SystemBackdrop>
 
     <Grid>
-        <NavigationView x:Name="RootNavigationView"
-                        ItemInvoked="RootNavigationView_ItemInvoked">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TitleBar
+            x:Name="titleBar"
+            Title="Age of Empire IV Overlay by WinUI 3"
+            IsBackButtonVisible="False"
+            IsPaneToggleButtonVisible="True"
+            PaneToggleRequested="TitleBar_PaneToggleRequested">
+            <!--<TitleBar.IconSource>
+                <ImageIconSource ImageSource="/Assets/Tiles/GalleryIcon.ico" />
+            </TitleBar.IconSource>-->
+        </TitleBar>
+        <NavigationView 
+            x:Name="RootNavigationView"
+            Grid.Row="1"
+            Canvas.ZIndex="0"
+            DisplayModeChanged="RootNavigationView_DisplayModeChanged"
+            IsPaneToggleButtonVisible="False"
+            ItemInvoked="RootNavigationView_ItemInvoked"
+            IsBackButtonVisible="Collapsed">
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Profile" Tag="Profile">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE77B;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="Games List" Tag="GamesView">
+                <NavigationViewItem Content="Games List" Tag="GamesList">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE8FD;" />
                     </NavigationViewItem.Icon>

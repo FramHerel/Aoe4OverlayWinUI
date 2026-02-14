@@ -8,12 +8,12 @@ namespace Aoe4OverlayWinUI.Models
 {
     public class GameData
     {
-        public string Team1 { get; set; }
-        public string Team2 { get; set; }
-        public string Map1 { get; set; }
-        public string StartedTime { get; set; }
-        public string Mode { get; set; }
-        public string Result { get; set; }
-        public string DeltaRating { get; set; }
+        public required string Team1 { get; set; }
+        public required string Team2 { get; set; }
+        public required string Map1 { get; set; }
+        public required string StartedTime { get; set; }
+        public required string Mode { get; set; }
+        public required string Result { get; set; }
+        public required string DeltaRating { get; set; }
     }
 }
