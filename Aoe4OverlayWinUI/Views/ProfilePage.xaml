@@ -9,6 +9,16 @@
     mc:Ignorable="d">
 
     <Grid>
-        
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+        <TextBlock
+                x:Name="PageHeader"
+                Margin="36,24,36,0"
+                AutomationProperties.HeadingLevel="Level1"
+                Style="{StaticResource TitleTextBlockStyle}"
+                Text="Profile" />
+
     </Grid>
 </Page>
