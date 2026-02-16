@@ -47,6 +47,26 @@
                     <StackPanel.ChildrenTransitions>
                         <RepositionThemeTransition />
                     </StackPanel.ChildrenTransitions>
+                    
+                    <!-- Account -->
+                    <TextBlock Style="{StaticResource SettingsSectionHeaderTextBlockStyle}" Text="Account" />
+                    <toolkit:SettingsCard Description="Binding your ID" Header="Search">
+                        <toolkit:SettingsCard.HeaderIcon>
+                            <FontIcon Glyph="&#xE77B;" />
+                        </toolkit:SettingsCard.HeaderIcon>
+                        <Button Content="Search" />
+                    </toolkit:SettingsCard>
+                    
+                    <!-- Overlay -->
+                    <TextBlock Style="{StaticResource SettingsSectionHeaderTextBlockStyle}" Text="Overlay" />
+                    <toolkit:SettingsCard Description="Enable or disable overlay" Header="Overlay on">
+                        <toolkit:SettingsCard.HeaderIcon>
+                            <FontIcon Glyph="&#xF156;" />
+                        </toolkit:SettingsCard.HeaderIcon>
+                        <ToggleSwitch x:Name="overlayOnOffToggleSwitch" />
+                    </toolkit:SettingsCard>
+
+                    <!-- Appearance & behavior -->
                     <TextBlock Style="{StaticResource SettingsSectionHeaderTextBlockStyle}" Text="Appearance &amp; behavior" />
                     <toolkit:SettingsCard Description="Select which app theme to display" Header="App theme">
                         <toolkit:SettingsCard.HeaderIcon>
@@ -66,7 +86,7 @@
                     <TextBlock Style="{StaticResource SettingsSectionHeaderTextBlockStyle}" Text="About" />
                     <toolkit:SettingsExpander
                         Margin="0,0,0,36"
-                        Description="© 2026 FramHerel. All rights reserved."
+                        Description="© 2026 All rights reserved."
                         Header="{StaticResource AppTitleName}">
                         <!--<toolkit:SettingsExpander.HeaderIcon>
                             <BitmapIcon ShowAsMonochrome="False" UriSource="/Assets/Tiles/BadgeLogo.png" />
