@@ -59,7 +59,8 @@
                         <toolkit:SettingsCard.HeaderIcon>
                             <FontIcon Glyph="&#xE77B;" />
                         </toolkit:SettingsCard.HeaderIcon>
-                        <Button x:Uid="Settings_Account_SettingsCard_Button" />
+                        <Button x:Uid="Settings_Account_SettingsCard_Button"
+                                Style="{StaticResource AccentButtonStyle}"/>
                     </toolkit:SettingsCard>
                     
                     <!-- Overlay -->

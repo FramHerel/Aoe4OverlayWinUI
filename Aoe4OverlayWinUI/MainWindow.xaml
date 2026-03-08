@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <TitleBar
             x:Name="titleBar"
-            Title="Age of Empire IV Overlay by WinUI 3"
+            Title="{StaticResource AppTitleName}"
             IsBackButtonVisible="False"
             IsPaneToggleButtonVisible="True"
             PaneToggleRequested="TitleBar_PaneToggleRequested">
