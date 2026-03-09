@@ -118,63 +118,64 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDisplayName" xml:space="preserve">
-    <value>Aoe4OverlayWinUI3</value>
+    <value>帝国时代4 覆盖层 WinUI 3</value>
   </data>
   <data name="AppDescription" xml:space="preserve">
-    <value>Aoe4OverlayWinUI3</value>
+    <value>帝国时代4 覆盖层 WinUI 3</value>
   </data>
   <data name="Shell_Profile.Content" xml:space="preserve">
-    <value>Profile</value>
+    <value>档案</value>
   </data>
   <data name="Shell_GamesList.Content" xml:space="preserve">
-    <value>Games List</value>
+    <value>对战列表</value>
   </data>
   <data name="Settings_Appearance_Header.Text" xml:space="preserve">
-    <value>Appearance</value>
+    <value>外观</value>
   </data>
   <data name="Settings_Theme.Text" xml:space="preserve">
-    <value>Theme</value>
+    <value>主题</value>
   </data>
   <data name="Settings_Theme_Light.Content" xml:space="preserve">
-    <value>Light</value>
+    <value>浅色</value>
   </data>
   <data name="Settings_Theme_Dark.Content" xml:space="preserve">
-    <value>Dark</value>
+    <value>深色</value>
   </data>
   <data name="Settings_Theme_Default.Content" xml:space="preserve">
-    <value>Use system set</value>
+    <value>使用系统设置</value>
   </data>
   <data name="Settings_About.Text" xml:space="preserve">
-    <value>About this application</value>
+    <value>关于</value>
   </data>
   <data name="Settings_AboutDescription.Text" xml:space="preserve">
-    <value>TODO: Replace with your app description.</value>
+    <value />
   </data>
   <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">
-    <value>Privacy Statement</value>
+    <value>隐私协议</value>
   </data>
-  <data name="SettingsPage_PrivacyTermsLink.NavigateUri" xml:space="preserve">
-    <value>https://YourPrivacyUrlGoesHere/</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="SettingsPage_PrivacyTermsLink.NavigateUri" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="Settings_Account_Header.Text" xml:space="preserve">
-    <value>Account</value>
+    <value>帐户</value>
   </data>
   <data name="Settings_Account_SettingsCard.Description" xml:space="preserve">
-    <value>Binding a new account</value>
+    <value>绑定一个新帐户</value>
   </data>
   <data name="Settings_Account_SettingsCard.Header" xml:space="preserve">
-    <value>Search</value>
+    <value>搜索</value>
   </data>
   <data name="Settings_Account_SettingsCard_Button.Content" xml:space="preserve">
-    <value>Search</value>
+    <value>搜索</value>
   </data>
   <data name="Settings_Overlay_Header.Text" xml:space="preserve">
-    <value>Overlay</value>
+    <value>覆盖层</value>
   </data>
   <data name="Settings_Overlay_SettingsCard.Header" xml:space="preserve">
-    <value>Enable the overlay</value>
+    <value>启用覆盖层</value>
   </data>
   <data name="Settings_Overlay_SettingsCard.Description" xml:space="preserve">
-    <value>Enable or disable the overlay</value>
+    <value>启用或禁用覆盖层</value>
   </data>
 </root>
