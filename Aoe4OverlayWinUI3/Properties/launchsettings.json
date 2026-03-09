@@ -1,0 +1,10 @@
+﻿{
+    "profiles": {
+      "Aoe4OverlayWinUI3 (Package)": {
+        "commandName": "MsixPackage"
+      },
+      "Aoe4OverlayWinUI3 (Unpackaged)": {
+        "commandName": "Project"
+      }
+    }
+}
