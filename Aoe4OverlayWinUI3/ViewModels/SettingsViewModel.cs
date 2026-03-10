@@ -55,7 +55,7 @@ public partial class SettingsViewModel : ObservableRecipient
     }
 
     // 构造函数，注入服务并初始化属性
-    public SettingsViewModel(IThemeSelectorService themeSelectorService,IAoe4ApiService aoe4ApiService,ILocalSettingsService localSettingsService)
+    public SettingsViewModel(IThemeSelectorService themeSelectorService, IAoe4ApiService aoe4ApiService, ILocalSettingsService localSettingsService)
     {
         _themeSelectorService = themeSelectorService;
         _elementTheme = _themeSelectorService.Theme;    //读取当前主题
@@ -105,6 +105,7 @@ public partial class SettingsViewModel : ObservableRecipient
         return $"{"AppDisplayName".GetLocalized()} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
     }
 
+    // TODO: 增加判断输入，识别是 ProfileId 还是玩家名字，支持两者搜索
     // 搜索玩家信息
     [RelayCommand]
     private async Task SearchPlayerAsync()
@@ -134,6 +135,12 @@ public partial class SettingsViewModel : ObservableRecipient
             IsLoading = false;
         }
     }
+
+    // TODO: 增加一个清除按钮，清除当前玩家信息和保存的 ProfileId
+    // TODO: 对查询 API 速率加以限制
+    // TODO: 增加错误提示，例如输入无效 ID 或网络错误时显示消息
+    // TODO: 覆盖层
+    // TODO: 解决切换主题不保存的问题
 
     // 加载保存的 ProfileId，并自动搜索更新玩家信息
     private async Task LoadSavedIdAsync()

@@ -31,7 +31,7 @@ public partial class ProfileViewModel : ObservableRecipient
         // 注册消息接收器，监听 PlayerChangedMessage
         StrongReferenceMessenger.Default.Register<PlayerChangedMessage>(this, (r, m) =>
         {
-            // m.Value 就是那个传过来的新 Player
+            // m.Value 即新 Player
             this.Player = m.Value;
         });
     }
