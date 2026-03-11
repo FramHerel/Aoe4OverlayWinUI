@@ -101,8 +101,12 @@ public partial class SettingsViewModel : ObservableRecipient
         {
             version = Assembly.GetExecutingAssembly().GetName().Version!;
         }
+        //// 返回本地化的应用名称和版本号
+        //return $"{"AppDisplayName".GetLocalized()} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
 
-        return $"{"AppDisplayName".GetLocalized()} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+        // 直接返回版本号
+        return $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+
     }
 
     // TODO: 增加判断输入，识别是 ProfileId 还是玩家名字，支持两者搜索
