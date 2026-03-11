@@ -68,6 +68,7 @@ public partial class App : Application
 
             // Core Services
             services.AddHttpClient();
+            //services.AddHttpClient<IAoe4ApiService, Aoe4ApiService>();
             services.AddSingleton<IAoe4ApiService, Aoe4ApiService>();
             services.AddSingleton<ISampleDataService, SampleDataService>();
             services.AddSingleton<IFileService, FileService>();

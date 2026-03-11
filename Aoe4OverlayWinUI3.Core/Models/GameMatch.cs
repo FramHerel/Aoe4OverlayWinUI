@@ -50,17 +50,32 @@ public class GameMatch
 
     // 对局中的玩家信息
     [JsonPropertyName("teams")]
-    public List<List<MatchPlayer>> Teams
+    public List<List<PlayerWrapper>> Teams
+    {
+        get; set;
+    }
+}
+// 对局中的玩家信息包装类
+public class PlayerWrapper
+{
+    [JsonPropertyName("player")]
+    public PlayerDetails Player
     {
         get; set;
     }
 }
 
-// 每个玩家在对局中的信息
-public class MatchPlayer
+// 玩家基本信息
+public class PlayerDetails
 {
-    [JsonPropertyName("player")]
-    public PlayerInfo Player
+    [JsonPropertyName("profile_id")]
+    public int ProfileId
+    {
+        get; set;
+    }
+
+    [JsonPropertyName("name")]
+    public string Name
     {
         get; set;
     }
@@ -73,27 +88,6 @@ public class MatchPlayer
 
     [JsonPropertyName("civilization")]
     public string Civilization
-    {
-        get; set;
-    }
-}
-
-// 玩家基本信息
-public class PlayerInfo
-{
-    [JsonPropertyName("id")]
-    public long ProfileId
-    {
-        get; set;
-    }
-
-    [JsonPropertyName("name")]
-    public string Name
-    {
-        get; set;
-    }
-    [JsonPropertyName("country")]
-    public string Country
     {
         get; set;
     }

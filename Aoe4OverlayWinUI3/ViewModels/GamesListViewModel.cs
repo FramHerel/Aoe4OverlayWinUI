@@ -12,6 +12,7 @@ namespace Aoe4OverlayWinUI3.ViewModels;
 public partial class GamesListViewModel : ObservableRecipient, INavigationAware
 {
     private readonly IAoe4ApiService _aoe4ApiService;
+
     private readonly ILocalSettingsService _localSettingsService;
 
     public ObservableCollection<GameItemViewModel> Games { get; } = new();
@@ -21,15 +22,14 @@ public partial class GamesListViewModel : ObservableRecipient, INavigationAware
 
     public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
 
-    public GamesListViewModel(IAoe4ApiService aoe4ApiService)
+    public GamesListViewModel(IAoe4ApiService aoe4ApiService,ILocalSettingsService localSettingsService)
     {
         _aoe4ApiService = aoe4ApiService;
+        _localSettingsService = localSettingsService;
     }
 
     public async void OnNavigatedTo(object parameter)
     {
-        Source.Clear();
-
         await LoadDataAsync();
 
         //// TODO: Replace with real data.
@@ -48,15 +48,15 @@ public partial class GamesListViewModel : ObservableRecipient, INavigationAware
     
     public async Task LoadDataAsync()
     {
-        var profileId = await _localSettingsService.ReadSettingAsync<string>("ProfileId");
+        IsLoading = true;
+        // 从本地设置中读取保存的 profileId
+        var profileId = await _localSettingsService.ReadSettingAsync<string>("SavedProfileId");
+        // 如果没有绑定帐户，提示用户先绑定帐户
         if (string.IsNullOrEmpty(profileId))
         {
-            // 添加提示：请先在设置中绑定帐户
+            // TODO: 添加提示：请先在设置中绑定帐户
             return;
         }
-
-        if (IsLoading) return;
-        IsLoading = true;
 
         try
         {

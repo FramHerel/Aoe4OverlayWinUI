@@ -9,35 +9,9 @@ namespace Aoe4OverlayWinUI3.ViewModels;
 
 public partial class GameItemViewModel : ObservableObject
 {
-    //将 GameMatch 模型转换成适合在 DataGrid 中展示的属性
-
-    private readonly GameMatch _model;
-    private readonly string _currentProfileId;
-
-    // 直接暴露一个属性来判断胜负，方便 DataGrid 的条件格式化
-    public bool IsWin
-    {
-        get; private set;
-    }
-
-    public GameItemViewModel(GameMatch model, string currentProfileId)
-    {
-        _model = model;
-        _currentProfileId = currentProfileId;
-
-        // 从对局数据中找到当前玩家的信息
-        var me = _model.Teams
-            .SelectMany(t => t)
-            .FirstOrDefault(p => p.Player.ProfileId.ToString() == _currentProfileId.ToString());
-
-        // 根据当前玩家的信息初始化展示属性
-        Initialize(me);
-
-    }
-
-    // 这些属性直接对应 DataGrid 的列 Binding
-    public string Map => _model.Map;
-    public string Kind => _model.Kind;
+    public string Map { get; }
+    public string Kind { get; }
+    public string StartTime { get; }
     public string Result
     {
         get;
@@ -52,34 +26,45 @@ public partial class GameItemViewModel : ObservableObject
     {
         get; private set;
     }
-    public string StartTime => _model.StartedAt.ToLocalTime().ToString("g"); // 本地化时间格式
+    public bool IsWin
+    {
+        get; private set;
+    }
+
+    public GameItemViewModel(GameMatch gameMatch, string currentProfileId)
+    {
+        Map=gameMatch.Map;
+        Kind = gameMatch.Kind;
+        StartTime = gameMatch.StartedAt.ToLocalTime().ToString("g");
+
+        // 从对局数据中找到当前玩家的信息
+        var currentPlayer = gameMatch.Teams
+            .SelectMany(t => t)         // 展平所有玩家
+            .Select(pw => pw.Player)    // 解包 PlayerWrapper
+            .FirstOrDefault(p => p.ProfileId.ToString() == currentProfileId.ToString());
+
+        // 根据当前玩家的信息初始化展示属性
+        Initialize(gameMatch,currentPlayer);
+
+    }
 
     // 根据当前玩家的信息初始化展示属性
-    private void Initialize(MatchPlayer me)
+    private void Initialize(GameMatch gameMatch, PlayerDetails currentPlayer)
     {
         // 提取并预处理展示数据
-        Result = me?.Result?.ToUpper() ?? "UNKNOWN";
-        Civilization = me?.Civilization ?? "N/A";
+        Result = currentPlayer?.Result?.ToUpper() ?? "UNKNOWN";
+        IsWin = Result.ToUpper() == "WIN";
+        Civilization = currentPlayer?.Civilization ?? "N/A";
 
         // 处理时长：秒 -> mm:ss
-        if (_model.Duration.HasValue)
+        if (gameMatch.Duration.HasValue)
         {
-            var t = TimeSpan.FromSeconds(_model.Duration.Value);
+            var t = TimeSpan.FromSeconds(gameMatch.Duration.Value);
             Duration = $"{(int)t.TotalMinutes}:{t.Seconds:D2}";
         }
         else
         {
             Duration = "N/A";
-        }
-
-        if (me != null)
-        {
-            IsWin = me.Result?.ToUpper() == "WIN";
-        }
-        else
-        {
-            IsWin = false;
-
         }
     }
 }
