@@ -27,9 +27,9 @@ public partial class SettingsViewModel : ObservableRecipient
     // 注入主题选择服务
     private readonly IThemeSelectorService _themeSelectorService;
 
-    // 用户输入的 ProfileId
+    // 用户输入的查询内容
     [ObservableProperty]
-    private string _searchProfileId = string.Empty;
+    private string _searchQuery = string.Empty;
 
     // 获取到的玩家信息
     [ObservableProperty]
@@ -109,23 +109,27 @@ public partial class SettingsViewModel : ObservableRecipient
 
     }
 
-    // TODO: 增加判断输入，识别是 ProfileId 还是玩家名字，支持两者搜索
+
     // 搜索玩家信息
     [RelayCommand]
     private async Task SearchPlayerAsync()
     {
-        if (string.IsNullOrWhiteSpace(SearchProfileId))
+        // 去除输入两端的空白字符
+        var query = SearchQuery?.Trim();
+
+        // 如果输入为空或仅包含空白字符，则不执行搜索
+        if (string.IsNullOrWhiteSpace(query))
             return;
 
         IsLoading = true;
         try
         {
-            var result = await _aoe4ApiService.GetPlayerAsync(SearchProfileId);
+            var result = await _aoe4ApiService.GetPlayerAsync(query);
             if (result != null)
             {
                 Player = result;
                 // 将 ProfileId 保存到本地设置，以便下次启动时自动加载
-                await _localSettingsService.SaveSettingAsync("SavedProfileId", SearchProfileId);
+                await _localSettingsService.SaveSettingAsync("SavedProfileId", Player.ProfileId.ToString());
 
                 StrongReferenceMessenger.Default.Send(new PlayerChangedMessage(Player));
             }
@@ -155,10 +159,10 @@ public partial class SettingsViewModel : ObservableRecipient
             // 如果当前玩家信息已经是保存的 ID，则不需要再次搜索
             if (Player != null && Player.ProfileId.ToString() == savedId)
             {
-                SearchProfileId = savedId;
+                SearchQuery = savedId;
                 return;
             }
-            SearchProfileId = savedId;
+            SearchQuery = savedId;
             await SearchPlayerAsync(); // 自动跑一遍搜索，显示玩家名字
         }
     }

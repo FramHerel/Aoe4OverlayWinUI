@@ -51,8 +51,8 @@
                             <TextBox
                                 MinWidth="180"
                                 VerticalAlignment="Center"
-                                PlaceholderText="Profile ID"
-                                Text="{x:Bind ViewModel.SearchProfileId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                PlaceholderText="Profile ID or Name"
+                                Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             <Button
                                 VerticalAlignment="Center"
                                 Command="{x:Bind ViewModel.SearchPlayerCommand}"
