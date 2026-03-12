@@ -83,7 +83,7 @@
                         <toolkit:SettingsCard.HeaderIcon>
                             <FontIcon Glyph="&#xF156;" />
                         </toolkit:SettingsCard.HeaderIcon>
-                        <ToggleSwitch x:Name="overlayOnOffToggleSwitch" />
+                        <ToggleSwitch x:Name="overlayOnOffToggleSwitch" IsOn="{x:Bind ViewModel.IsOverlayEnabled, Mode=TwoWay}" />
                     </toolkit:SettingsCard>
                     <!--  Appearance  -->
                     <TextBlock x:Uid="Settings_Appearance_Header" Style="{StaticResource SettingsSectionHeaderTextBlockStyle}" />

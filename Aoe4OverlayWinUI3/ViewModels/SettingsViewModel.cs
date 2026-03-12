@@ -23,9 +23,11 @@ public partial class SettingsViewModel : ObservableRecipient
     private readonly IAoe4ApiService _aoe4ApiService;
     // 注入本地设置服务
     private readonly ILocalSettingsService _localSettingsService;
-
     // 注入主题选择服务
     private readonly IThemeSelectorService _themeSelectorService;
+    // 注入覆盖层服务
+    private readonly IOverlayService _overlayService;
+
 
     // 用户输入的查询内容
     [ObservableProperty]
@@ -62,19 +64,34 @@ public partial class SettingsViewModel : ObservableRecipient
         get;
         set;
     }
+
+    // 覆盖层显示状态
+    [ObservableProperty]
+    public partial bool IsOverlayEnabled
+    {
+        get;
+        set;
+    }
+
+
+
+
+    // 可用的主题列表
     public ElementTheme[] Themes { get; } = (ElementTheme[])Enum.GetValues(typeof(ElementTheme));
 
+    //  切换主题的命令
     public ICommand SwitchThemeCommand
     {
         get;
     }
 
     // 构造函数，注入服务并初始化属性
-    public SettingsViewModel(IThemeSelectorService themeSelectorService, IAoe4ApiService aoe4ApiService, ILocalSettingsService localSettingsService)
+    public SettingsViewModel(IThemeSelectorService themeSelectorService, IAoe4ApiService aoe4ApiService, ILocalSettingsService localSettingsService, IOverlayService overlayService)
     {
         _themeSelectorService = themeSelectorService;
         ElementTheme = _themeSelectorService.Theme;    //读取当前主题
         VersionDescription = GetVersionDescription();
+        _overlayService = overlayService;
         _aoe4ApiService = aoe4ApiService;
         _localSettingsService = localSettingsService;
         _ = LoadSavedIdAsync();
@@ -155,6 +172,16 @@ public partial class SettingsViewModel : ObservableRecipient
     // TODO: 对查询 API 速率加以限制
     // TODO: 增加错误提示，例如输入无效 ID 或网络错误时显示消息
     // TODO: 覆盖层
+
+
+
+    partial void OnIsOverlayEnabledChanged(bool value)
+    {
+        // 直接调用我们的底层服务
+        _overlayService.ToggleOverlay(value);
+
+        // 建议：这里以后可以加上保存配置到 LocalSettings 的代码
+    }
 
     // 加载保存的 ProfileId，并自动搜索更新玩家信息
     private async Task LoadSavedIdAsync()
