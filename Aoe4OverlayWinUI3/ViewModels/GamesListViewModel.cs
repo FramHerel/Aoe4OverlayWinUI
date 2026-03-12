@@ -18,8 +18,7 @@ public partial class GamesListViewModel : ObservableRecipient, INavigationAware
     public ObservableCollection<GameItemViewModel> Games { get; } = new();
 
     [ObservableProperty]
-    private bool _isLoading;
-
+    public partial bool IsLoading { get; set; }
     public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
 
     public GamesListViewModel(IAoe4ApiService aoe4ApiService,ILocalSettingsService localSettingsService)
